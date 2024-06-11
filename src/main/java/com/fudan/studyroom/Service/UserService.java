@@ -1,9 +1,11 @@
 package com.fudan.studyroom.service;
 
 import com.fudan.studyroom.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface UserService {
 
     int insert(User user);
