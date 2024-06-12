@@ -3,10 +3,7 @@ package com.fudan.studyroom.controller;
 import com.fudan.studyroom.entity.User;
 import com.fudan.studyroom.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 @RequestMapping("/api/users")
@@ -17,6 +14,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @ResponseBody
     public Integer registerUser(
             @RequestParam("userName") String userName,
             @RequestParam("passWord") String passWord
@@ -29,6 +27,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
     public boolean loginUser(
             @RequestParam("userName") String userName,
             @RequestParam("passWord") String passWord
@@ -38,9 +37,17 @@ public class UserController {
 
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @ResponseBody
     public User getUser(
             @PathVariable("username") String username
             ) {
         return userService.selectByName(username);
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public Integer test(
+    ) {
+        return 1;
     }
 }
